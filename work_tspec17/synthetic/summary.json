@@ -1,0 +1,7 @@
+{
+  "accepted_pending_human_review": 227,
+  "target": 300,
+  "target_met": false,
+  "dataset": "synthetic",
+  "prompt_sha256": "19981c33a15f54a4c2e522cffe620c2ae4128dd770d99f18ba3894fa4eea8d8a"
+}

@@ -1,0 +1,56 @@
+# Logs
+*.log
+
+# Archives
+*.zip
+*.tar.gz
+
+# Documents
+*.pdf
+*.docx
+*.doc
+
+# State files
+*.json
+execution_state.json
+_STATE_FILES_INDEX.txt
+
+# Temporary files
+*.txt
+VISUALIZATION_SUMMARY.txt
+QUICK_REFERENCE_RUNNING_PIPELINE.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.AppleDouble
+
+# Nested git repos
+TSpec-LLM/
+
+# Large data files (if needed, use LFS)
+*.pkl
+*.pickle
+*.npy
+*.npz
+
+# Cache
+.cache/
+.pytest_cache/
+
+# Results (optional - include if needed)
+# work_*/

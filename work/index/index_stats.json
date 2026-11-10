@@ -1,0 +1,17 @@
+{
+  "passages": 9695,
+  "device": "mps",
+  "bge": {
+    "model": "BAAI/bge-base-en-v1.5",
+    "dim": 768,
+    "seconds": 528.5
+  },
+  "e5": {
+    "model": "intfloat/e5-base-v2",
+    "dim": 768,
+    "seconds": 652.4
+  },
+  "bm25": {
+    "seconds": 0.8
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "snapshot_at": "2026-11-09T10:12:24+05:30",
+  "work_directory": "work_tspec17",
+  "current_stage": "pilot20_kg_extraction",
+  "teleqna": {
+    "verified": 733,
+    "included": 351,
+    "errors": 0,
+    "checkpoint": "work_tspec17/benchmark/verification.jsonl"
+  },
+  "synthetic": {
+    "source_clauses_processed": 900,
+    "generated_candidates": 357,
+    "verified_candidates": 357,
+    "accepted_pending_human_review": 227,
+    "target": 300,
+    "target_met": false,
+    "errors": 0,
+    "generation_checkpoint": "work_tspec17/synthetic/generation.jsonl",
+    "verification_checkpoint": "work_tspec17/synthetic/verification.jsonl",
+    "review_sheet": "work_tspec17/synthetic/questions_review_enriched.csv"
+  },
+  "pilot20": {
+    "sample_and_config_saved": true,
+    "questions": 20,
+    "kg_scope_passages": 573,
+    "kg_extraction_successful_at_snapshot": 1,
+    "kg_extraction_errors_at_snapshot": 0,
+    "extraction_checkpoint": "work_tspec17/pilot20/kg/extract_raw.jsonl",
+    "pilot_accuracy_available": false
+  },
+  "resume_launcher": "resume_after_restart.sh",
+  "human_review_complete": false,
+  "main_split_frozen": false,
+  "final_thesis_experiments_complete": false,
+  "note": "Counts are a historical snapshot. Active checkpoints continue advancing. Reboot stops processes; run the resume launcher afterward."
+}

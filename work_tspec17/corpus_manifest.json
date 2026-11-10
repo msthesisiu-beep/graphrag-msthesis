@@ -1,0 +1,114 @@
+{
+  "created": "2026-11-08T18:17:30",
+  "teleqna_zip": {
+    "file": "teleqna-20261107T162419Z-1-001.zip",
+    "sha256": "854bc42ce6758e4f443c64e85e3dc8a3f6aeaeb99a67d834266e3af2af6ce740",
+    "downloaded": "2026-11-07T21:54:28",
+    "release_filter": 17,
+    "questions_retained": 733
+  },
+  "tspec_source": {
+    "kind": "directory",
+    "root": "TSpec-LLM/3GPP-clean",
+    "release": 17,
+    "files": [
+      {
+        "file": "Rel-17/23_series/23501-ha0.md",
+        "bytes": 3620212,
+        "sha256": "5f4189fcc748e4c1cdbaab9ff3f34e29ea120f42722624abaa9a931831d846f3"
+      },
+      {
+        "file": "Rel-17/23_series/23502-ha0.md",
+        "bytes": 2803379,
+        "sha256": "7c4b0d16629ea3a8c761f9b1e69e02b6457b3ead4e8e314681c647bea8ee09c8"
+      },
+      {
+        "file": "Rel-17/24_series/24501-hc0.md",
+        "bytes": 7316906,
+        "sha256": "7b6f20887bdcb0735eb054b2024f8dc75e781509015bc7df04ca65eab8c7cfbb"
+      },
+      {
+        "file": "Rel-17/38_series/38300-h60.md",
+        "bytes": 875383,
+        "sha256": "9779595d87bba12963212cd2429ccb6dd2dd774763a8d7235ab4b9c6e6c45b0f"
+      },
+      {
+        "file": "Rel-17/38_series/38331-h60.md",
+        "bytes": 4466737,
+        "sha256": "dfbecf32bb7d1a17cdb2607fd203f7345b45afa3160617aaafda02e536dd485c"
+      }
+    ]
+  },
+  "specs": [
+    {
+      "spec": "23.501",
+      "version": "V17.10.0",
+      "date": "2023-09",
+      "file": "Rel-17/23_series/23501-ha0.md",
+      "passages": 1825,
+      "normative_terms_source": 2936,
+      "normative_terms_passages": 2936,
+      "source_bytes": 3620212,
+      "source_sha256": "5f4189fcc748e4c1cdbaab9ff3f34e29ea120f42722624abaa9a931831d846f3"
+    },
+    {
+      "spec": "23.502",
+      "version": "V17.10.0",
+      "date": "2023-09",
+      "file": "Rel-17/23_series/23502-ha0.md",
+      "passages": 1587,
+      "normative_terms_source": 2350,
+      "normative_terms_passages": 2350,
+      "source_bytes": 2803379,
+      "source_sha256": "7c4b0d16629ea3a8c761f9b1e69e02b6457b3ead4e8e314681c647bea8ee09c8"
+    },
+    {
+      "spec": "24.501",
+      "version": "V17.12.0",
+      "date": "2023-09",
+      "file": "Rel-17/24_series/24501-hc0.md",
+      "passages": 3317,
+      "normative_terms_source": 6909,
+      "normative_terms_passages": 6909,
+      "source_bytes": 7316906,
+      "source_sha256": "7b6f20887bdcb0735eb054b2024f8dc75e781509015bc7df04ca65eab8c7cfbb"
+    },
+    {
+      "spec": "38.300",
+      "version": "V17.6.0",
+      "date": "2023-09",
+      "file": "Rel-17/38_series/38300-h60.md",
+      "passages": 443,
+      "normative_terms_source": 561,
+      "normative_terms_passages": 561,
+      "source_bytes": 875383,
+      "source_sha256": "9779595d87bba12963212cd2429ccb6dd2dd774763a8d7235ab4b9c6e6c45b0f"
+    },
+    {
+      "spec": "38.331",
+      "version": "V17.6.0",
+      "date": "2023-09",
+      "file": "Rel-17/38_series/38331-h60.md",
+      "passages": 2523,
+      "normative_terms_source": 1374,
+      "normative_terms_passages": 1374,
+      "source_bytes": 4466737,
+      "source_sha256": "dfbecf32bb7d1a17cdb2607fd203f7345b45afa3160617aaafda02e536dd485c"
+    }
+  ],
+  "quality": {
+    "passages": 9695,
+    "empty": 0,
+    "tokens_p5_p50_p95": [
+      171,
+      477,
+      500
+    ],
+    "over_max": 417,
+    "unique_ids": true,
+    "normative_terms_preserved": true,
+    "missing_specs": [],
+    "corpus_ok": true
+  },
+  "tokenizer": "Qwen/Qwen2.5-7B-Instruct"
+}

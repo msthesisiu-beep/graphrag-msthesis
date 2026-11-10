@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-11-10T13:49:48Z",
+  "total_questions": 733,
+  "accepted": 0,
+  "rejected": 733,
+  "acceptance_rate": 0.0,
+  "full_agreement_3_3": 0,
+  "partial_agreement_2_3": 0,
+  "disagreement_1_3": 0,
+  "consensus_rate": 0.0,
+  "fleiss_kappa": 0.0,
+  "gate_pass": false,
+  "model_bias": {
+    "llama2:13b": 0.0,
+    "neural-chat:7b": 0.0,
+    "mistral:7b": 0.0
+  },
+  "disagreement_questions": 733,
+  "judge_models": [
+    "llama2:13b",
+    "neural-chat:7b",
+    "mistral:7b"
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "nodes": 1935,
+  "edges": 2250,
+  "relations": [
+    [
+      "has_parameter",
+      651
+    ],
+    [
+      "is_a",
+      247
+    ],
+    [
+      "uses_interface",
+      222
+    ],
+    [
+      "sends",
+      198
+    ],
+    [
+      "depends_on",
+      139
+    ],
+    [
+      "provides_service",
+      131
+    ],
+    [
+      "receives",
+      98
+    ],
+    [
+      "performs",
+      96
+    ],
+    [
+      "has_timer",
+      82
+    ],
+    [
+      "requires",
+      50
+    ],
+    [
+      "stores",
+      50
+    ],
+    [
+      "part_of",
+      39
+    ],
+    [
+      "supports",
+      37
+    ],
+    [
+      "triggers",
+      37
+    ],
+    [
+      "initiates",
+      28
+    ],
+    [
+      "configures",
+      27
+    ],
+    [
+      "starts_timer",
+      26
+    ],
+    [
+      "notifies",
+      25
+    ],
+    [
+      "consumes_service",
+      15
+    ],
+    [
+      "selects",
+      12
+    ],
+    [
+      "controls",
+      11
+    ],
+    [
+      "stops_timer",
+      11
+    ],
+    [
+      "subscribes_to",
+      9
+    ],
+    [
+      "connects_to",
+      7
+    ],
+    [
+      "terminates",
+      2
+    ]
+  ],
+  "node_types": [
+    [
+      "Parameter",
+      866
+    ],
+    [
+      "Message",
+      261
+    ],
+    [
+      "Entity",
+      193
+    ],
+    [
+      "Procedure",
+      149
+    ],
+    [
+      "NetworkFunction",
+      119
+    ],
+    [
+      "Service",
+      100
+    ],
+    [
+      "Interface",
+      81
+    ],
+    [
+      "Timer",
+      61
+    ],
+    [
+      "State",
+      49
+    ],
+    [
+      "Requirement",
+      29
+    ],
+    [
+      "Protocol",
+      21
+    ],
+    [
+      "ReferencePoint",
+      6
+    ]
+  ],
+  "extracted": 6814,
+  "type_ok": 4601,
+  "verified": 2250,
+  "source_passages": 482,
+  "offline_cost": {
+    "extract_seconds": 11435.8,
+    "extract_in_tokens": 344849,
+    "extract_out_tokens": 334089
+  },
+  "graph_pickle_mb": 0.61
+}

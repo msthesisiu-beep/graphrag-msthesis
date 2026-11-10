@@ -1,0 +1,80 @@
+# Thesis KG-RAG experiment configuration (Ollama, fully local).
+# Copy to <project-root>/thesis_config.yaml and edit there; every script records this file's hash.
+
+seed: 42
+
+paths:
+  raw_dir: .                       # folder containing the TeleQnA / TSpec zip downloads
+  teleqna_zip_glob: "teleqna-*.zip"
+  tspec_zip_glob: "tspec-*.zip"
+  tspec_source: directory          # directory | zip
+  tspec_dir: TSpec-LLM/3GPP-clean
+  work_dir: work_tspec17            # separate outputs for the Release 17-only corpus
+
+ollama:
+  host: http://localhost:11434
+  num_ctx: 8192                    # Ollama silently truncates prompts above num_ctx
+  keep_alive: 5m
+  timeout_s: 900
+  max_retries: 3
+  gen_max_tokens: 512
+
+# Four LLM roles. Thesis rule: generator, verifier and evaluator must be different models,
+# and the KG triple verifier must differ from extractor, generator and evaluator.
+models:
+  generator: qwen2.5:7b-instruct
+  generator_hf_tokenizer: Qwen/Qwen2.5-7B-Instruct   # used to count T_q (ungated HF repo)
+  verifier: llama3.1:8b            # answerability verifier + triple-fidelity/relevance verifier
+  evaluator: gemma2:9b             # RAGAS judge
+  kg_extractor: mistral-nemo:12b
+  ragas_embeddings: nomic-embed-text
+
+encoders:                          # sentence-transformers, run on Apple Silicon GPU
+  device: mps                      # mps | cuda | cpu
+  embedder: BAAI/bge-base-en-v1.5  # experimental retriever
+  pool_dense: intfloat/e5-base-v2  # independent pooling retriever (never BGE)
+  reranker: BAAI/bge-reranker-base
+
+corpus:
+  release: 17
+  specs: ["23.501", "23.502", "24.501", "38.300", "38.331"]
+  min_tokens: 300
+  max_tokens: 500
+  skip_sections: ["contents", "foreword"]
+
+benchmark:
+  categories: ["Standards specifications", "Standards overview"]
+  pool_k: 50                       # top-k per independent method (BM25, E5)
+  verify_top_n: 10                 # pooled passages actually shown to the verifier (RRF order)
+  verify_batch: 5
+  target_questions: 500
+  min_questions: 300
+  dev_fraction: 0.2
+  manual_sample_per_class: 100
+  gate_precision: 0.90
+  gate_kappa: 0.70
+
+retrieval:
+  candidates: 30
+  rerank_keep: 5
+  rerank_threshold: null           # null -> read work/runs/dev/rerank_threshold.json if present
+
+kg:
+  scope: candidates                # candidates = union of BGE top-30 for dev+test; all = whole corpus
+  max_triples_per_passage: 15
+  entity_types: [NetworkFunction, Interface, ReferencePoint, Message, Procedure, Timer,
+                 Requirement, Parameter, Protocol, State, Service, Entity]
+  relations: [sends, receives, provides_service, consumes_service, uses_interface, connects_to,
+              part_of, performs, triggers, initiates, terminates, configures, selects, stores,
+              subscribes_to, notifies, depends_on, requires, has_timer, has_parameter, starts_timer,
+              stops_timer, is_a, supports, controls]
+  default_variant: {triples: 10, hops: 1, share: 0.20}
+  grid: {triples: [5, 10, 20], hops: [1, 2], share: [0.10, 0.20, 0.30]}
+  audit_sample: 200
+
+run:
+  repeats: 1                       # set to 3 if the determinism check fails
+  budget_tolerance: 0.05
+
+# Local models have no API bill; report hosted-equivalent cost under an explicit assumption.
+pricing_usd_per_1m_tokens: {input: 0.15, output: 0.60, assumption: "gpt-4o-mini list price used as hosted-equivalent"}

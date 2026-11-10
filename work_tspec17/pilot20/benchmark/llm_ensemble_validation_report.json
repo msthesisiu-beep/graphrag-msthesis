@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-11-10T14:30:42Z",
+  "total_questions": 15,
+  "accepted": 14,
+  "rejected": 1,
+  "acceptance_rate": 0.9333,
+  "full_agreement_3_3": 9,
+  "partial_agreement_2_3": 6,
+  "disagreement_1_3": 0,
+  "consensus_rate": 1.0,
+  "fleiss_kappa": 0.0217,
+  "gate_pass": false,
+  "model_bias": {
+    "qwen2.5:7b-instruct": 0.6,
+    "llama3.1:8b": 0.9333,
+    "mistral:latest": 1.0
+  },
+  "disagreement_questions": 6,
+  "judge_models": [
+    "qwen2.5:7b-instruct",
+    "llama3.1:8b",
+    "mistral:latest"
+  ]
+}

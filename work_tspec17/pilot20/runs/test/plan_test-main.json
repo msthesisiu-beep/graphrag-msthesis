@@ -1,0 +1,23 @@
+{
+  "plan": {
+    "0": true,
+    "A": true,
+    "D": true,
+    "controls": true,
+    "modes": [
+      "matched",
+      "overhead"
+    ]
+  },
+  "variants": [
+    "t10-h1-g20"
+  ],
+  "threshold": null,
+  "repeats": 1,
+  "questions": 69,
+  "questions_pending": 69,
+  "prompt_version": "553a3feec9ac",
+  "generator": "qwen2.5:7b-instruct",
+  "config_sha256": "72e0c8578990be31bedfad63bdc9dba999f6e6fd5aaa91cdda69ac29ac6dd277",
+  "started": "2026-11-10T15:04:48"
+}

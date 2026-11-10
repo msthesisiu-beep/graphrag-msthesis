@@ -1,0 +1,26 @@
+{
+  "candidates": 150,
+  "pooled": 150,
+  "verifier_supports_and_quote_pass": 53,
+  "after_manual": 50,
+  "final_retained": 50,
+  "development": 10,
+  "test": 40,
+  "excluded_by_code": {
+    "X1": 49,
+    "X7": 26,
+    "X2": 22,
+    "X4": 3
+  },
+  "retriever_found_share": 0.62,
+  "hop_types": {
+    "single": 25,
+    "multi": 25
+  },
+  "question_types": {
+    "procedure_association": 17,
+    "cross_section_dependency": 16,
+    "multi_hop_reasoning": 9,
+    "factual_lookup": 8
+  }
+}

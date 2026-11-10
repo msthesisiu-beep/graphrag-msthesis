@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>3GPP Knowledge Graph - 3D View</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            overflow: hidden;
+        }
+        
+        #container {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .info {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(255,255,255,0.95);
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 100;
+            max-width: 300px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .controls {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(255,255,255,0.95);
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 11px;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+            font-size: 11px;
+        }
+        
+        button:hover {
+            background: #45a049;
+        }
+        
+        h3 {
+            margin: 0 0 10px 0;
+            font-size: 13px;
+        }
+        
+        .legend {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.95);
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        
+        .legend-color {
+            width: 10px;
+            height: 10px;
+            margin-right: 6px;
+            border-radius: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    
+    <div class="info">
+        <h3>📊 3D Knowledge Graph</h3>
+        <b>Nodes:</b> 300<br>
+        <b>Edges:</b> 554<br>
+        <br>
+        <b>Controls:</b><br>
+        • Left mouse: Rotate<br>
+        • Right mouse: Pan<br>
+        • Scroll: Zoom<br>
+        • Hover: Node info
+    </div>
+    
+    <div class="legend">
+        <h3>📋 Entity Types</h3>
+        <div class="legend-item"><div class="legend-color" style="background: #FF6B6B;"></div>NetworkFunction</div>
+        <div class="legend-item"><div class="legend-color" style="background: #4ECDC4;"></div>Service</div>
+        <div class="legend-item"><div class="legend-color" style="background: #45B7D1;"></div>Interface</div>
+        <div class="legend-item"><div class="legend-color" style="background: #FFA07A;"></div>Parameter</div>
+        <div class="legend-item"><div class="legend-color" style="background: #98D8C8;"></div>Message</div>
+        <div class="legend-item"><div class="legend-color" style="background: #F7DC6F;"></div>Procedure</div>
+        <div class="legend-item"><div class="legend-color" style="background: #BB8FCE;"></div>Entity</div>
+        <div class="legend-item"><div class="legend-color" style="background: #85C1E2;"></div>Timer</div>
+    </div>
+    
+    <div class="controls">
+        <button onclick="resetView()">🔄 Reset</button>
+        <button onclick="togglePhysics()">⚙️ Physics</button><br>
+        <button onclick="screenshotGraph()">📸 Screenshot</button>
+    </div>
+    
+    <script type="text/javascript">
+        var nodes = new vis.DataSet(<module 'json' from '/opt/miniconda3/lib/python3.13/json/__init__.py'>);
+        var edges = new vis.DataSet(<module 'json' from '/opt/miniconda3/lib/python3.13/json/__init__.py'>);
+        var container = document.getElementById('container');
+        var data = {nodes: nodes, edges: edges};
+        
+        var options = {
+            physics: {
+                enabled: true,
+                barnesHut: {
+                    gravitationalConstant: -2000,
+                    centralGravity: 0.1,
+                    springLength: 150
+                },
+                solver: 'barnesHut',
+                timestep: 0.5,
+                stabilization: {iterations: 200}
+            },
+            interaction: {
+                hover: true,
+                navigationButtons: true,
+                keyboard: true,
+                zoomView: true,
+                dragView: true
+            },
+            nodes: {
+                shape: 'sphere',
+                scaling: {
+                    label: {enabled: true, min: 10, max: 14}
+                },
+                font: {size: 11, color: '#000'},
+                borderWidth: 1,
+                borderWidthSelected: 2
+            },
+            edges: {
+                smooth: {type: 'continuous', forceDirection: 'none'},
+                arrows: {to: {enabled: true, scaleFactor: 0.3}},
+                width: 1,
+                font: {size: 8}
+            },
+            physics: {enabled: true}
+        };
+        
+        var network = new vis.Network(container, data, options);
+        
+        function resetView() {
+            network.fit({animation: {duration: 1000}});
+        }
+        
+        function togglePhysics() {
+            var isEnabled = options.physics.enabled;
+            network.setOptions({physics: {enabled: !isEnabled}});
+            options.physics.enabled = !isEnabled;
+        }
+        
+        function screenshotGraph() {
+            // Canvas rendering would go here
+            alert("Graph snapshot requested. Right-click to save as image.");
+        }
+        
+        setTimeout(() => {
+            network.fit();
+            console.log('Graph loaded and initialized');
+        }, 500);
+    </script>
+</body>
+</html>

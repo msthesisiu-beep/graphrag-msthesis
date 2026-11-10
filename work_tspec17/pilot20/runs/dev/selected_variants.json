@@ -1,0 +1,24 @@
+{
+  "default": "t10-h1-g20",
+  "selected_top3": [],
+  "variants": [
+    "t10-h1-g20"
+  ],
+  "ranking": [
+    {
+      "variant": "t10-h1-g20",
+      "accuracy": 1.0,
+      "baseline_accuracy": 1.0,
+      "delta_pp": 0.0,
+      "ci_95": [
+        0.0,
+        0.0
+      ],
+      "p_raw": 1.0,
+      "b_correct_c_wrong": 0,
+      "c_correct_b_wrong": 0,
+      "t_total_median": 13.02,
+      "faithfulness": NaN
+    }
+  ]
+}

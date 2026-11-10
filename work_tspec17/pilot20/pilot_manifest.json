@@ -1,0 +1,180 @@
+{
+  "protocol": "exploratory-synthetic-pilot20-v1",
+  "human_review_required": true,
+  "question_ids": [
+    "synthetic 47fd54f934a27593cdb9",
+    "synthetic db95f7a7e4fe1937c5d6",
+    "synthetic 185672cd86fa5eae96cf",
+    "synthetic 676ccc47b13665339fc9",
+    "synthetic 0fcc3759a205948d09a9",
+    "synthetic d35ab2ac4f6c33fa2296",
+    "synthetic 98517173bd1554b4a8e1",
+    "synthetic de4ea506f96ed6307944",
+    "synthetic ae67cddec0b03e5da6e3",
+    "synthetic 99cb2d0b85de1b4ee9b3",
+    "synthetic 3c8b87b98be63e96ccfe",
+    "synthetic f5498ee98d1343dfd71e",
+    "synthetic 9b7d75d25626a1d1587f",
+    "synthetic c060a960b0222509dcc8",
+    "synthetic 712474fafbffb55bee04",
+    "synthetic bf024d6c2f4c35940dbe",
+    "synthetic f1f7f68dab93001522be",
+    "synthetic 495395be60432c4cc92b",
+    "synthetic a4dd88aebc2b094b98eb",
+    "synthetic 5a981b41f7421621ee48"
+  ],
+  "seed": 42,
+  "config": {
+    "seed": 42,
+    "paths": {
+      "raw_dir": ".",
+      "teleqna_zip_glob": "teleqna-*.zip",
+      "tspec_zip_glob": "tspec-*.zip",
+      "tspec_source": "directory",
+      "tspec_dir": "TSpec-LLM/3GPP-clean",
+      "work_dir": "work_tspec17/pilot20"
+    },
+    "ollama": {
+      "host": "http://localhost:11434",
+      "num_ctx": 8192,
+      "keep_alive": "5m",
+      "timeout_s": 900,
+      "max_retries": 3,
+      "gen_max_tokens": 512
+    },
+    "models": {
+      "generator": "qwen2.5:7b-instruct",
+      "generator_hf_tokenizer": "Qwen/Qwen2.5-7B-Instruct",
+      "verifier": "llama3.1:8b",
+      "evaluator": "gemma2:9b",
+      "kg_extractor": "mistral-nemo:12b",
+      "ragas_embeddings": "nomic-embed-text"
+    },
+    "encoders": {
+      "device": "mps",
+      "embedder": "BAAI/bge-base-en-v1.5",
+      "pool_dense": "intfloat/e5-base-v2",
+      "reranker": "BAAI/bge-reranker-base"
+    },
+    "corpus": {
+      "release": 17,
+      "specs": [
+        "23.501",
+        "23.502",
+        "24.501",
+        "38.300",
+        "38.331"
+      ],
+      "min_tokens": 300,
+      "max_tokens": 500,
+      "skip_sections": [
+        "contents",
+        "foreword"
+      ]
+    },
+    "benchmark": {
+      "categories": [
+        "Standards specifications",
+        "Standards overview"
+      ],
+      "pool_k": 50,
+      "verify_top_n": 10,
+      "verify_batch": 5,
+      "target_questions": 500,
+      "min_questions": 300,
+      "dev_fraction": 0.2,
+      "manual_sample_per_class": 100,
+      "gate_precision": 0.9,
+      "gate_kappa": 0.7
+    },
+    "retrieval": {
+      "candidates": 30,
+      "rerank_keep": 5,
+      "rerank_threshold": null
+    },
+    "kg": {
+      "scope": "candidates",
+      "max_triples_per_passage": 15,
+      "entity_types": [
+        "NetworkFunction",
+        "Interface",
+        "ReferencePoint",
+        "Message",
+        "Procedure",
+        "Timer",
+        "Requirement",
+        "Parameter",
+        "Protocol",
+        "State",
+        "Service",
+        "Entity"
+      ],
+      "relations": [
+        "sends",
+        "receives",
+        "provides_service",
+        "consumes_service",
+        "uses_interface",
+        "connects_to",
+        "part_of",
+        "performs",
+        "triggers",
+        "initiates",
+        "terminates",
+        "configures",
+        "selects",
+        "stores",
+        "subscribes_to",
+        "notifies",
+        "depends_on",
+        "requires",
+        "has_timer",
+        "has_parameter",
+        "starts_timer",
+        "stops_timer",
+        "is_a",
+        "supports",
+        "controls"
+      ],
+      "default_variant": {
+        "triples": 10,
+        "hops": 1,
+        "share": 0.2
+      },
+      "grid": {
+        "triples": [
+          5,
+          10,
+          20
+        ],
+        "hops": [
+          1,
+          2
+        ],
+        "share": [
+          0.1,
+          0.2,
+          0.3
+        ]
+      },
+      "audit_sample": 200
+    },
+    "run": {
+      "repeats": 1,
+      "budget_tolerance": 0.05
+    },
+    "pricing_usd_per_1m_tokens": {
+      "input": 0.15,
+      "output": 0.6,
+      "assumption": "gpt-4o-mini list price used as hosted-equivalent"
+    }
+  },
+  "source_files": {
+    "work_tspec17/passages.jsonl": "4e3e323c53aae0a2ed87df13eccafde1f4d74eed576c817b96bb390c46f3ae26",
+    "work_tspec17/index/bge.faiss": "56af035471ec55e55fe1bd11558fadf7f2c51b5415468171b611ed695b3fa705",
+    "work_tspec17/index/e5.faiss": "a983603d67f26a50f4ccead0a77aba7df9397b8a10d904dbfd28baa46d615183",
+    "work_tspec17/index/bm25.pkl": "e21f6dc349cec3e8c6b12de9a15b7df9d3de5bd51847f785c742e256cf264fd7"
+  },
+  "questions_sha256": "bd64ca15e087f159848f45348d8979a377dd2d8b29c95d82d9060d31e4146269",
+  "threshold_policy": "No pilot-answer calibration; rerank top-k without a threshold"
+}

@@ -1,0 +1,29 @@
+{
+  "scope": "exploratory_pilot_only",
+  "automatic_parameter_changes": false,
+  "human_review_required": true,
+  "profile": {
+    "extract_raw.jsonl": {
+      "records": 576,
+      "successful_records": 573,
+      "mean_recorded_seconds": 19.957731239092496,
+      "mean_output_tokens": 583.0523560209424,
+      "errors_logged": 3
+    },
+    "verify_raw.jsonl": {
+      "records": 721,
+      "successful_records": 691,
+      "mean_recorded_seconds": 3.957437047756874,
+      "mean_output_tokens": 93.62373371924747,
+      "errors_logged": 30
+    },
+    "mean_triples_per_successful_passage": 12.666666666666666
+  },
+  "conditions": [],
+  "quality_and_latency": {},
+  "matched_budget_violations": 0,
+  "recommendations": [
+    "Finish all pilot conditions and resolve execution errors before selecting accuracy-tuning parameters."
+  ],
+  "safe_runtime_optimization": "KG source selection now releases encoder models before extractor warmup on subsequent extraction processes; no measured speedup claimed."
+}

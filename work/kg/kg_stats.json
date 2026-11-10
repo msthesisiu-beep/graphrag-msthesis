@@ -1,0 +1,16 @@
+{
+  "nodes": 0,
+  "edges": 0,
+  "relations": [],
+  "node_types": [],
+  "extracted": 0,
+  "type_ok": 0,
+  "verified": 0,
+  "source_passages": 0,
+  "offline_cost": {
+    "extract_seconds": 0,
+    "extract_in_tokens": 0,
+    "extract_out_tokens": 0
+  },
+  "graph_pickle_mb": 0.0
+}

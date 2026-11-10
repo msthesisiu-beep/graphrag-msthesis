@@ -1,0 +1,80 @@
+{
+  "created": "2026-11-07T22:40:43",
+  "teleqna_zip": {
+    "file": "teleqna-20261107T162419Z-1-001.zip",
+    "sha256": "854bc42ce6758e4f443c64e85e3dc8a3f6aeaeb99a67d834266e3af2af6ce740",
+    "downloaded": "2026-11-07T21:54:28"
+  },
+  "tspec_zip": {
+    "file": "tspec-20261107T162419Z-1-001.zip",
+    "sha256": "dbe13c15db88ef884741f37e2802fb3575134a1e41a16eb441ba96259498d6df",
+    "downloaded": "2026-11-07T21:54:36"
+  },
+  "specs": [
+    {
+      "spec": "23.501",
+      "version": "V17.10.0",
+      "date": "2023-09",
+      "file": "tspec/3GPP-clean/Rel-17/23_series/23501-ha0.md",
+      "passages": 1825,
+      "normative_terms_source": 2936,
+      "normative_terms_passages": 2936,
+      "zip_member_bytes": 3620212
+    },
+    {
+      "spec": "23.502",
+      "version": "V17.10.0",
+      "date": "2023-09",
+      "file": "tspec/3GPP-clean/Rel-17/23_series/23502-ha0.md",
+      "passages": 1587,
+      "normative_terms_source": 2350,
+      "normative_terms_passages": 2350,
+      "zip_member_bytes": 2803379
+    },
+    {
+      "spec": "24.501",
+      "version": "V17.12.0",
+      "date": "2023-09",
+      "file": "tspec/3GPP-clean/Rel-17/24_series/24501-hc0.md",
+      "passages": 3317,
+      "normative_terms_source": 6909,
+      "normative_terms_passages": 6909,
+      "zip_member_bytes": 7316906
+    },
+    {
+      "spec": "38.300",
+      "version": "V17.6.0",
+      "date": "2023-09",
+      "file": "tspec/3GPP-clean/Rel-17/38_series/38300-h60.md",
+      "passages": 443,
+      "normative_terms_source": 561,
+      "normative_terms_passages": 561,
+      "zip_member_bytes": 875383
+    },
+    {
+      "spec": "38.331",
+      "version": "V17.6.0",
+      "date": "2023-09",
+      "file": "tspec/3GPP-clean/Rel-17/38_series/38331-h60.md",
+      "passages": 2523,
+      "normative_terms_source": 1374,
+      "normative_terms_passages": 1374,
+      "zip_member_bytes": 4466737
+    }
+  ],
+  "quality": {
+    "passages": 9695,
+    "empty": 0,
+    "tokens_p5_p50_p95": [
+      171,
+      477,
+      500
+    ],
+    "over_max": 417,
+    "unique_ids": true,
+    "normative_terms_preserved": true,
+    "missing_specs": [],
+    "corpus_ok": true
+  },
+  "tokenizer": "Qwen/Qwen2.5-7B-Instruct"
+}
