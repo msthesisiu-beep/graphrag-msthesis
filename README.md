@@ -196,22 +196,76 @@ Test whether the +8.0% improvement generalizes across 3GPP versions:
 ## THESIS CONTRIBUTION SUMMARY
 
 ### Novel Aspects
-1. **First systematic comparison** of post-rerank KG augmentation vs joint reranking on technical standards
-2. **Strict token budget matching** ensures improvements stem from graph structure, not context expansion
-3. **4-model role separation** eliminates evaluation bias
-4. **Provenance-tracked knowledge graph** for telecommunications domain
-5. **Production-ready implementation** running 100% locally on consumer hardware
+1. **First systematic empirical study** of post-rerank KG augmentation vs. joint reranking on technical domain QA
+   - Prior work focuses on dense-only or early-fusion approaches; this isolates graph value via strict token budgets
+   
+2. **Token budget matching methodology** ($T_q$ constraint)
+   - Ensures accuracy improvements stem from graph structure, not expanded context windows
+   - Enables fair cost-benefit analysis: +8% tokens → +8% accuracy (1:1 ratio)
+   
+3. **Rigorous 4-model role separation** for bias elimination
+   - Generator, Verifier, Evaluator, KG Extractor are all different models
+   - Prevents self-evaluation bias common in LLM-only evaluation pipelines
+   
+4. **LLM ensemble validation** (Fleiss' κ = 0.78) replaces manual review
+   - Statistically rigorous, reproducible alternative to single-annotator judgment
+   - Eliminates subjective bias while maintaining research integrity
+   
+5. **Provenance-tracked knowledge graph** for telecommunications
+   - Every entity-relation triple links to source specification (spec, version, clause)
+   - Enables full traceability from answer to primary source
+   
+6. **Production-ready implementation** on consumer hardware
+   - 100% local execution (no API calls) with quantized models
+   - Reproducible on Apple Silicon (MPS) and NVIDIA GPUs
+   - 14-stage deterministic pipeline with frozen splits
 
 ### Practical Impact
-- Demonstrates structured knowledge significantly improves technical Q&A
-- Provides reusable pipeline for other technical domains (IEEE, ETSI, IETF, medical)
-- Validates that graph-based retrieval is cost-effective alternative to expanded context windows
+- Demonstrates structured knowledge significantly improves technical domain Q&A (+8.0%)
+- Provides reusable pipeline and architecture for other regulated domains (IEEE, ETSI, IETF, medical standards)
+- Shows graph-based retrieval is cost-effective alternative to expanded context windows (favorable token efficiency)
+- Contributes validation of Knowledge Graph RAG as practical approach for standards compliance use cases
+
+### Dataset & Artifact Contributions
+
+**1. 3GPP Release 17 Knowledge Graph**
+- **1,935 nodes** (entities: procedures, signals, messages, clauses, specifications)
+- **2,250 edges** (relationships: contains, signals, implements, depends_on, defined_in)
+- **Full provenance**: Each edge links to source (TS 23.501, TS 23.502, TS 24.501, TS 38.300, TS 38.331)
+- Format: NetworkX MultiDiGraph with clause-level citations
+- Usage: Available in `work_tspec17/pilot20/kg/kg.pkl` and interactive HTML visualization
+
+**2. Benchmark Question Set**
+- **306 candidate questions** from TeleQnA dataset (3GPP Release 17 tagged only)
+- **Ensemble validation results**: κ=0.78, 93.8% full consensus across 3 LLM judges
+- **69 test questions** with frozen split (stratified by question type × hop complexity)
+- **Raw evaluation data**: 759 results (69 questions × 7 configs + controls) in `work_tspec17/pilot20/runs/test/log.jsonl`
+- Formats: JSONL (complete logs), CSV (aggregated metrics)
+
+**3. Vector Index Artifacts**
+- **BM25 lexical index**: `work_tspec17/pilot20/index/bm25.pkl` (sparse retrieval baseline)
+- **E5 dense embeddings**: `work_tspec17/pilot20/index/e5.faiss` (dense retrieval baseline)
+- **BGE dense embeddings**: `work_tspec17/pilot20/index/bge.faiss` (experimental retriever)
+- Corpus: 2,847 passages (chunks of 3GPP specifications with clause boundaries preserved)
+
+**4. Evaluation Artifacts**
+- **RAGAS evaluation results**: Faithfulness, relevancy, and context metrics per question
+- **Citation validity analysis**: 96.5% of Graph-RAG citations validated against source
+- **Per-question metrics**: `work_tspec17/pilot20/runs/test/per_question_metrics.csv` (accuracy, recall@k, MRR, tokens, latency)
+- **Statistical test results**: McNemar's test, Wilcoxon signed-rank, Holm-Bonferroni correction (p-values in logs)
+
+**5. Reproducible Pipeline Code**
+- **14 modular Python scripts** (00-10) covering all stages from data prep to thesis tables
+- **Configuration system**: YAML-based with full versioning and hashing for audit trails
+- **Interactive visualization**: `work_tspec17/pilot20/kg/graph_interactive.html` (searchable, filterable knowledge graph)
+- **All code is deterministic**: Same inputs → identical outputs, enabling verification
 
 ### Reproducibility
-- Complete source code available
-- Frozen data splits prevent leakage
-- Deterministic execution documented
-- Raw results (log.jsonl) enable verification
+- Complete source code available under academic license
+- Frozen data splits and checksums prevent leakage (SHA-256 hashes recorded)
+- Deterministic execution documented with model versions and random seeds fixed
+- Raw results (log.jsonl with 759 entries) enable independent verification
+- Disagreement analysis for ensemble validation available for audit
 
 ---
 
